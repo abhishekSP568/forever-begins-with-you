@@ -260,7 +260,7 @@ export default function App() {
 
         <section className="gallery-section section-pad" id="memories">
           <div className="content-width">
-            <SectionHeading eyebrow="A little collection of forever" title="Moments that" highlight="stay" description="Twenty-four real memories, handpicked from your beautiful story. Tap a photograph to linger in it awhile." />
+            <SectionHeading eyebrow="A little collection of forever" title="Moments that" highlight="stay" description={`${initialMemories.length} real memories, gathered in one album. Tap any photograph to linger in it awhile.`} />
             <MemoryGallery initialPhotos={initialMemories} onStartMusic={startMusic} onError={showNote} />
           </div>
         </section>

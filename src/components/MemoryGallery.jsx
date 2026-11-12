@@ -54,8 +54,6 @@ export default function MemoryGallery({ initialPhotos, onStartMusic, onError }) 
   };
 
   const selected = photos[active];
-  const visiblePhotos = Array.from({ length: Math.min(5, photos.length) }, (_, index) => photos[(active + index) % photos.length]);
-
   useEffect(() => {
     if (!lightbox) return undefined;
     const keydown = (event) => {
@@ -71,17 +69,17 @@ export default function MemoryGallery({ initialPhotos, onStartMusic, onError }) 
     <>
       <div className="gallery-layout">
         <div className="polaroid-grid">
-          {visiblePhotos.map((photo, index) => (
+          {photos.map((photo, index) => (
             <motion.button
               key={photo.id}
               type="button"
-              className={`polaroid polaroid-${index + 1}${index === 0 ? " polaroid-active" : ""}`}
-              onClick={() => { setActive((active + index) % photos.length); setLightbox(true); }}
+              className={`polaroid${active === index ? " polaroid-active" : ""}`}
+              onClick={() => { setActive(index); setLightbox(true); }}
               whileHover={{ scale: 1.045, rotate: 0, zIndex: 5, y: -9 }}
               whileTap={{ scale: 0.97 }}
               aria-label={`Open photo: ${photo.caption}`}
             >
-              <img src={photo.src} alt={photo.alt} loading={index > 1 ? "lazy" : "eager"} />
+              <img src={photo.src} alt={photo.alt} loading={index > 3 ? "lazy" : "eager"} />
               <span className="polaroid-caption script">{photo.caption}</span>
               <span className="polaroid-expand"><Maximize2 size={13} /></span>
             </motion.button>
@@ -94,7 +92,7 @@ export default function MemoryGallery({ initialPhotos, onStartMusic, onError }) 
           <span className="hand-drawn-heart">♡</span>
           <p className="eyebrow">THE ALBUM OF ALWAYS</p>
           <h3 className="serif">Life is made of little moments.</h3>
-          <p>Here are a few of the beautiful ones. Bring your own favorite snapshots along, too.</p>
+          <p>Every moment in your story, gathered in one place. Tap a photograph to see it up close, or bring your own favorite snapshots along.</p>
           <div className="gallery-control-row">
             <button type="button" className={`button button-quiet${slideshow ? " is-active" : ""}`} onClick={toggleSlideshow}>
               {slideshow ? <Pause size={15} /> : <Play size={15} />}
