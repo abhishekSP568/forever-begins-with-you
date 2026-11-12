@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowDown, AudioLines, Heart, Infinity, Menu, Music2, Pause,
+  ArrowDown, ArrowUp, AudioLines, Heart, Infinity, Menu, Music2, Pause,
   Play, Quote, Sparkles, Volume2, VolumeX, X,
 } from "lucide-react";
 import Welcome from "./components/Welcome.jsx";
@@ -112,8 +112,9 @@ function FinalCelebration({ names, onEasterEgg, onFinale }) {
         <p className="finale-copy">May your love story continue beautifully,<br className="desktop-break" /> today, tomorrow and forever. <Heart className="inline-heart" size={18} fill="currentColor" /></p>
         <p className="script finale-names">{names}</p>
         <button type="button" className="button button-outline-gold" onClick={fire}><Sparkles size={16} /> Celebrate one more time</button>
-        <p className="final-signature">Made with endless love by <span className="script">Your Brother</span></p>
+        <p className="final-signature"><span>Made with endless love by</span><span className="script">Your Brother</span></p>
         <button className="hidden-note-trigger" type="button" onClick={onEasterEgg}>psst... one last little secret</button>
+        <a className="button button-outline-gold finale-replay" href="#top"><ArrowUp size={15} /> Begin their story again</a>
       </div>
     </section>
   );
