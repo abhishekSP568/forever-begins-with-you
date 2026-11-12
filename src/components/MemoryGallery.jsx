@@ -54,6 +54,8 @@ export default function MemoryGallery({ initialPhotos, onStartMusic, onError }) 
   };
 
   const selected = photos[active];
+  const visiblePhotos = Array.from({ length: Math.min(5, photos.length) }, (_, index) => photos[(active + index) % photos.length]);
+
   useEffect(() => {
     if (!lightbox) return undefined;
     const keydown = (event) => {
@@ -69,12 +71,12 @@ export default function MemoryGallery({ initialPhotos, onStartMusic, onError }) 
     <>
       <div className="gallery-layout">
         <div className="polaroid-grid">
-          {photos.map((photo, index) => (
+          {visiblePhotos.map((photo, index) => (
             <motion.button
               key={photo.id}
               type="button"
-              className={`polaroid${active === index ? " polaroid-active" : ""}`}
-              onClick={() => { setActive(index); setLightbox(true); }}
+              className={`polaroid polaroid-${index + 1}${index === 0 ? " polaroid-active" : ""}`}
+              onClick={() => { setActive((active + index) % photos.length); setLightbox(true); }}
               whileHover={{ scale: 1.045, rotate: 0, zIndex: 5, y: -9 }}
               whileTap={{ scale: 0.97 }}
               aria-label={`Open photo: ${photo.caption}`}
