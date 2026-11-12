@@ -27,6 +27,8 @@ const photos = [
 
 const memoryBase = `${import.meta.env.BASE_URL}memories/`;
 
+export const defaultWeddingDate = "2025-11-16";
+
 export const initialMemories = photos.map(([filename, caption, alt], index) => ({
   id: `memory-${index}`,
   src: `${memoryBase}${encodeURIComponent(filename)}`,
@@ -37,7 +39,7 @@ export const initialMemories = photos.map(([filename, caption, alt], index) => (
 export const defaultTimeline = [
   { id: "met", title: "The Day They Met", date: "", description: "One hello that started a forever.", photo: "" },
   { id: "memory", title: "Their First Special Memory", date: "", description: "The first of so many little moments, made extraordinary together.", photo: "" },
-  { id: "wedding", title: "Their Wedding Day", date: "", description: "Two hearts, one promise, one beautiful beginning.", photo: `${memoryBase}KRI02212.JPG` },
+  { id: "wedding", title: "Their Wedding Day", date: defaultWeddingDate, description: "Two hearts, one promise, one beautiful beginning.", photo: `${memoryBase}KRI02212.JPG` },
   { id: "journey", title: "Their Beautiful Journey", date: "", description: "Adventures, laughter, and all the in-between moments.", photo: `${memoryBase}0F0A9805.JPG` },
   { id: "today", title: "Today: Another Year of Love", date: "", description: "Another year of holding hands and choosing each other.", photo: "" },
   { id: "forever", title: "Forever and Always", date: "", description: "All the adventures and anniversaries still to come.", photo: "" },

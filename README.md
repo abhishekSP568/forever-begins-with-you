@@ -30,7 +30,7 @@ Push this project to a GitHub repository's `main` branch. In the repository, ope
 ## Personalize the story
 
 - **Names:** Select **Make it yours** in the top navigation. Names are saved in this browser.
-- **Wedding date:** Enter the date in **Love in Numbers**. The live counter and starry-night dedication use the date; no date is assumed.
+- **Wedding date:** The live counter and starry-night dedication start with November 16, 2025. Change the date in **Love in Numbers** to personalize it.
 - **Timeline:** Select a chapter to edit its title, date, description, or photo. Choose **Add a chapter** for a new milestone. Story edits are saved in this browser.
 - **Photos:** Twenty-four original photographs are in `public/memories/`. The gallery's **Add your own** control accepts multiple images for this visit.
 - **Music:** Use the music controls to start the original, synthesized anniversary melody after an interaction. Music never autoplays.

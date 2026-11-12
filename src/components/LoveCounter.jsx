@@ -35,6 +35,11 @@ export default function LoveCounter({ weddingDate, onDateChange, onError }) {
   const breakdown = useMemo(() => weddingDate && elapsedTime(weddingDate, now), [weddingDate, now]);
 
   useEffect(() => {
+    setDraftDate(weddingDate);
+    setEditing(!weddingDate);
+  }, [weddingDate]);
+
+  useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 30_000);
     return () => window.clearInterval(timer);
   }, []);

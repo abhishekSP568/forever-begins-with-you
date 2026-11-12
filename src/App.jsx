@@ -13,7 +13,7 @@ import LoveCounter from "./components/LoveCounter.jsx";
 import LoveLetter from "./components/LoveLetter.jsx";
 import StarryNight from "./components/StarryNight.jsx";
 import Celebration from "./components/Celebration.jsx";
-import { defaultTimeline, initialMemories } from "./data/memories.js";
+import { defaultTimeline, defaultWeddingDate, initialMemories } from "./data/memories.js";
 import { useAnniversaryMusic } from "./hooks/useAnniversaryMusic.js";
 
 const futureDreams = [
@@ -144,7 +144,7 @@ export default function App() {
   const [welcomeOpen, setWelcomeOpen] = useState(true);
   const [names, setNames] = useStoredValue("forever-names", initialScript.title);
   const [timeline, setTimeline] = useStoredValue("forever-timeline", defaultTimeline);
-  const [weddingDate, setWeddingDate] = useStoredValue("forever-date", "");
+  const [weddingDate, setWeddingDate] = useStoredValue("forever-date", defaultWeddingDate);
   const [toast, setToast] = useState("");
   const [dedicationOpen, setDedicationOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -156,6 +156,16 @@ export default function App() {
   const music = useAnniversaryMusic();
 
   useEffect(() => () => window.clearTimeout(toastTimer.current), []);
+
+  useEffect(() => {
+    if (!weddingDate) setWeddingDate(defaultWeddingDate);
+    setTimeline((current) => {
+      if (!current.some((event) => event.id === "wedding" && !event.date)) return current;
+      return current.map((event) => (
+        event.id === "wedding" && !event.date ? { ...event, date: defaultWeddingDate } : event
+      ));
+    });
+  }, []);
 
   const showNote = (message) => {
     setToast(message);
